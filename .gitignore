@@ -26,5 +26,4 @@ yarn-error.log*
 # project files
 .idea
 db.json
-.eslintrc
 todos.txt
