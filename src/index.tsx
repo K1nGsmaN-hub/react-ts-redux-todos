@@ -7,6 +7,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { rootReducer } from './store/rootReducer';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import GlobalStyle from './globalStyles';
 
 const store = createStore(
   rootReducer,
@@ -19,6 +20,7 @@ const store = createStore(
 
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyle />
     <Provider store={store}>
       <App />
     </Provider>
