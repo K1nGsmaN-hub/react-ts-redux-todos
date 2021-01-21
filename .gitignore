@@ -27,3 +27,4 @@ yarn-error.log*
 .idea
 db.json
 .eslintrc
+todos.txt
