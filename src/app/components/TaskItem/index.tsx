@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { deleteTask } from '../../../store/actions/appAction';
 
 import { TaskItemWrapper, Button } from './styles';
 import {
@@ -6,8 +7,13 @@ import {
   lightBlueGradient90,
   redGradient90,
 } from '../../../variables';
+import { ITodo } from '../../../store/reducers/appReducer';
+import { connect } from 'react-redux';
 
-const TaskItem: React.FC<IProps> = ({ isComplete }) => {
+const TaskItem: React.FC<IProps> = ({
+  data: { id, text, isComplete },
+  deleteTask,
+}) => {
   return (
     <TaskItemWrapper>
       <div className="task-number">
@@ -17,17 +23,15 @@ const TaskItem: React.FC<IProps> = ({ isComplete }) => {
         </button>
       </div>
 
-      <div className="task-text">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate,
-        qui? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem,
-        dolorum?
-      </div>
+      <div className="task-text">{text}</div>
 
       <div className="task-controls">
         <Button btnBG={greenGradient90} isActive={true}>
           {isComplete ? 'Сделать активной' : 'Завершиить'}
         </Button>
-        <Button btnBG={redGradient90}>Удалить</Button>
+        <Button btnBG={redGradient90} onClick={() => deleteTask(id)}>
+          Удалить
+        </Button>
         {!isComplete && <Button btnBG={lightBlueGradient90}>Закрепить</Button>}
       </div>
 
@@ -37,7 +41,12 @@ const TaskItem: React.FC<IProps> = ({ isComplete }) => {
 };
 
 interface IProps {
-  isComplete: boolean;
+  data: ITodo;
+  deleteTask: any;
 }
 
-export default TaskItem;
+const mapDispatchToProps = {
+  deleteTask,
+};
+
+export default connect(null, mapDispatchToProps)(TaskItem);
