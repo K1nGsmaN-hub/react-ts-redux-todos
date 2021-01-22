@@ -1,4 +1,9 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { addTask } from '../../../store/actions/appAction';
+
+import { generateID } from '../../services/generateID';
+import { idLength } from '../../../variables';
 
 import { InputFieldWrapper } from './styles';
 
@@ -20,6 +25,21 @@ class InputField extends React.PureComponent<IProps, IState> {
 
   submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!this.state.taskText) {
+      return undefined;
+    }
+
+    const newTask = {
+      id: generateID(idLength),
+      text: this.state.taskText,
+      isCompleted: false,
+      labels: [],
+      comments: [],
+    };
+
+    this.props.addTask(newTask);
+
     this.setState({ taskText: '' });
   };
 
@@ -44,10 +64,16 @@ class InputField extends React.PureComponent<IProps, IState> {
   }
 }
 
-interface IProps {}
+interface IProps {
+  addTask: any;
+}
 
 interface IState {
   taskText: string;
 }
 
-export default InputField;
+const mapDispatchToProps = {
+  addTask,
+};
+
+export default connect(null, mapDispatchToProps)(InputField);
