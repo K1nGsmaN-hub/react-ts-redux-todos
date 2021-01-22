@@ -27,3 +27,4 @@ export const grayFade =
 // other
 
 export const url = 'http://localhost:3001/';
+export const idLength = 6;
