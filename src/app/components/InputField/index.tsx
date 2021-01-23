@@ -33,7 +33,7 @@ class InputField extends React.PureComponent<IProps, IState> {
     const newTask = {
       id: generateID(idLength),
       text: this.state.taskText,
-      isCompleted: false,
+      isComplete: false,
       labels: [],
       comments: [],
     };

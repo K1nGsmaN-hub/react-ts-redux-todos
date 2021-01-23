@@ -44,6 +44,9 @@ export const TaskItemWrapper = styled.div`
     line-height: 22px;
     font-weight: bold;
     color: #000;
+
+    word-break: break-word;
+
     margin-bottom: 10px;
   }
 

@@ -1,17 +1,19 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../../store/rootReducer';
+import { ITodo } from '../../../store/reducers/appReducer';
 
 import TaskItem from '../TaskItem';
-import { ITodo } from '../../../store/reducers/appReducer';
+
+import { TaskListWrapper } from './styles';
 
 const TaskList: React.FC<IProps> = ({ todos }) => {
   return (
-    <div className="task-list">
+    <TaskListWrapper>
       {todos.map((item) => (
         <TaskItem key={item.id} data={item} />
       ))}
-    </div>
+    </TaskListWrapper>
   );
 };
 
