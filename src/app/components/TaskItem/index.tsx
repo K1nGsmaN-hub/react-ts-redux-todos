@@ -15,7 +15,7 @@ import { ITodo } from '../../../store/reducers/appReducer';
 import { connect } from 'react-redux';
 
 const TaskItem: React.FC<IProps> = ({
-  data: { id, text, isComplete },
+  data: { id, text, taskNumber, isComplete },
   deleteTask,
   enableIsCompleteStatus,
   disableIsCompleteStatus,
@@ -40,7 +40,7 @@ const TaskItem: React.FC<IProps> = ({
   return (
     <TaskItemWrapper>
       <div className="task-number">
-        <span>Задача #1</span>
+        <span>Задача #{taskNumber}</span>
         <button>
           <i className="far fa-edit" />
         </button>
