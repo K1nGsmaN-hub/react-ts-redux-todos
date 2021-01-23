@@ -12,6 +12,8 @@ const initialState: IState = {
 export const appReducer = (state: IState = initialState, action: IAction) => {
   switch (action.type) {
     case ADD_TASK:
+      action.payload.taskNumber = state.todosArr.length + 1;
+
       return {
         ...state,
         todosArr: [...state.todosArr, action.payload],
@@ -67,6 +69,7 @@ interface IComment {
 export interface ITodo {
   id: string;
   text: string;
+  taskNumber: number;
   isComplete: boolean;
   labels: ILabel[];
   comments: IComment[];
